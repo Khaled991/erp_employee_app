@@ -1,0 +1,4 @@
+enum NotificationTileType {
+  notification,
+  remainder,
+}
