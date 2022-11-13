@@ -1,4 +1,4 @@
-import 'package:erp_employee_app/core/config/theme/paddings.dart';
+import 'package:badges/badges.dart';
 import 'package:erp_employee_app/core/constants/global_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +32,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     }
 
     return Padding(
-      padding: const EdgeInsets.all(Paddings.large),
+      padding: const EdgeInsets.all(35.0),
       child: Container(
         decoration: BoxDecoration(
           color: GlobalColors.primary,
@@ -42,18 +42,19 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           currentIndex: widget.index,
           onTap: widget.setIndex,
           itemPadding: const EdgeInsets.all(14.0),
-          // selectedColorOpacity: 1,
           unselectedItemColor: GlobalColors.white,
           selectedItemColor: GlobalColors.white,
           items: [
             /// Home
             SalomonBottomBarItem(
-              icon: const Icon(Icons.person_outlined),
+              icon: const Icon(size: 30.0, Icons.person_rounded),
               title: const Text(
                 "الحضور",
                 style: TextStyle(
-                  fontSize: 17.0,
+                  height: 1.5,
+                  fontSize: 14.0,
                   fontWeight: FontWeight.w500,
+                  fontFamily: 'Cairo',
                 ),
               ),
             ),
@@ -61,25 +62,42 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             /// Add requist
             SalomonBottomBarItem(
               icon: const Icon(
-                Icons.email_outlined,
+                size: 30.0,
+                Icons.email_rounded,
               ),
               title: const Text(
                 "اضافة طلب",
                 style: TextStyle(
-                  fontSize: 17.0,
+                  height: 1.5,
+                  fontSize: 14.0,
                   fontWeight: FontWeight.w500,
+                  fontFamily: 'Cairo',
                 ),
               ),
             ),
 
             /// Notifications
             SalomonBottomBarItem(
-              icon: const Icon(Icons.notifications_outlined),
+              icon: Badge(
+                badgeColor: Colors.red,
+                animationType: BadgeAnimationType.scale,
+                animationDuration: const Duration(milliseconds: 900),
+                position: const BadgePosition(start: 14.0, top: -2.0),
+                showBadge: true,
+                badgeContent: const Text('4'),
+                child: const Icon(
+                  size: 30.0,
+                  Icons.notifications_rounded,
+                  textDirection: TextDirection.rtl,
+                ),
+              ),
               title: const Text(
-                "الاشعارات",
+                'الاشعارات',
                 style: TextStyle(
-                  fontSize: 17.0,
+                  height: 1.5,
+                  fontSize: 14.0,
                   fontWeight: FontWeight.w500,
+                  fontFamily: 'Cairo',
                 ),
               ),
             ),
@@ -88,7 +106,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             SalomonBottomBarItem(
               icon: GestureDetector(
                 onTap: logout,
-                child: const Icon(Icons.logout_outlined),
+                child: const Icon(size: 30.0, Icons.logout_rounded),
               ),
               title: const Text(""),
             ),

@@ -1,4 +1,5 @@
 import 'package:erp_employee_app/core/config/theme/paddings.dart';
+import 'package:erp_employee_app/core/constants/global_colors.dart';
 import 'package:erp_employee_app/core/data/api/enums/api_state_enum.dart';
 import 'package:erp_employee_app/core/domain/providers/root_provider.dart';
 import 'package:erp_employee_app/core/presentation/components/buttons/button.dart';
@@ -7,6 +8,7 @@ import 'package:erp_employee_app/core/presentation/components/input/input.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:erp_employee_app/core/utils/regex.dart';
 import 'package:erp_employee_app/core/utils/snackbar_utils.dart';
+import 'package:erp_employee_app/core/widgets/custom_app_bar.dart';
 import 'package:erp_employee_app/features/attendance/presentation/components/dropdown/dropdown.dart';
 import 'package:erp_employee_app/features/employee_request/data/enums/employee_request_type.dart';
 import 'package:erp_employee_app/features/employee_request/domain/provider/employee_request_provider.dart';
@@ -71,45 +73,57 @@ class _EmployeeRequestScreenState extends State<EmployeeRequestScreen> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
 
-    return Padding(
-      padding: const EdgeInsets.all(Paddings.screen),
-      child: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          child: Gap(
-            space: 25.0,
-            children: [
-              SvgPicture.asset(
-                'assets/SVG/add-requist.svg',
-                width: screenSize.width * .8,
-              ),
-              Dropdown<EmployeeRequestType>(
-                label: "نوع الطلب",
-                validator: _validateDropdown,
-                onChanged: onTypeChanged,
-                items: EmployeeRequestType.values
-                    .map<DropdownMenuItem<EmployeeRequestType>>(
-                        (EmployeeRequestType requestType) {
-                  return DropdownMenuItem<EmployeeRequestType>(
-                    value: requestType,
-                    child: Text(_requestTypeString[requestType]!),
-                  );
-                }).toList(),
-                value: requestType,
-              ),
-              if (requestType == EmployeeRequestType.OTHER)
-                Input(
-                  controller: _customRequestTypeController,
-                  label: "النوع",
-                  validator: (String? value) =>
-                      _validateInput(value, requiredFieldNameOnError: "النوع"),
+    return Scaffold(
+      appBar: CustomAppBar(title: 'إضافة طلب', actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.error_rounded,
+            size: 30.0,
+            color: GlobalColors.primary,
+          ),
+        ),
+      ]),
+      body: Padding(
+        padding: const EdgeInsets.all(Paddings.screen),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Gap(
+              space: 25.0,
+              children: [
+                SvgPicture.asset(
+                  'assets/SVG/add-requist.svg',
+                  width: screenSize.width * .8,
                 ),
-              if (requestType != null) _renderRequestInput[requestType]!,
-              Button(
-                label: "ارسال الطلب",
-                onPressed: _onPressedSend,
-              ),
-            ],
+                Dropdown<EmployeeRequestType>(
+                  label: "نوع الطلب",
+                  validator: _validateDropdown,
+                  onChanged: onTypeChanged,
+                  items: EmployeeRequestType.values
+                      .map<DropdownMenuItem<EmployeeRequestType>>(
+                          (EmployeeRequestType requestType) {
+                    return DropdownMenuItem<EmployeeRequestType>(
+                      value: requestType,
+                      child: Text(_requestTypeString[requestType]!),
+                    );
+                  }).toList(),
+                  value: requestType,
+                ),
+                if (requestType == EmployeeRequestType.OTHER)
+                  Input(
+                    controller: _customRequestTypeController,
+                    label: "النوع",
+                    validator: (String? value) => _validateInput(value,
+                        requiredFieldNameOnError: "النوع"),
+                  ),
+                if (requestType != null) _renderRequestInput[requestType]!,
+                Button(
+                  label: "ارسال الطلب",
+                  onPressed: _onPressedSend,
+                ),
+              ],
+            ),
           ),
         ),
       ),

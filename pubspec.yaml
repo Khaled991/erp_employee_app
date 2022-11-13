@@ -44,6 +44,7 @@ dependencies:
   shared_preferences: ^2.0.15
   socket_io_client: ^1.0.2
   salomon_bottom_bar: ^3.3.1
+  badges: ^2.0.3
 
 dev_dependencies:
   build_runner: ^2.1.11

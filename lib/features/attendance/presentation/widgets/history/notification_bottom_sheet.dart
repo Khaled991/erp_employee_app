@@ -1,18 +1,18 @@
 import 'package:erp_employee_app/core/config/theme/paddings.dart';
+import 'package:erp_employee_app/core/constants/global_colors.dart';
 import 'package:erp_employee_app/features/notifications/data/enums/notification_tile_type.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class NotificationBottomSheet extends StatefulWidget {
   final NotificationTileType notificationTileType;
-  final String stringDate;
+  final String date;
 
   final String description;
 
   const NotificationBottomSheet({
     Key? key,
     required this.notificationTileType,
-    required this.stringDate,
+    required this.date,
     required this.description,
   }) : super(key: key);
 
@@ -23,7 +23,7 @@ class NotificationBottomSheet extends StatefulWidget {
 
 class _NotificationBottomSheetState extends State<NotificationBottomSheet> {
   late final String title;
-  late final String iconPath;
+  late final IconData icon;
 
   @override
   void initState() {
@@ -35,18 +35,17 @@ class _NotificationBottomSheetState extends State<NotificationBottomSheet> {
     switch (widget.notificationTileType) {
       case NotificationTileType.notification:
         title = "تنبيه";
-        iconPath = "assets/SVG/notifications.svg";
+        icon = Icons.notifications_rounded;
         break;
       case NotificationTileType.remainder:
         title = "تذكير";
-        iconPath = "assets/SVG/remainder.svg";
+        icon = Icons.timer_rounded;
         break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: Paddings.small,
@@ -68,24 +67,27 @@ class _NotificationBottomSheetState extends State<NotificationBottomSheet> {
             children: [
               Row(
                 children: [
-                  SvgPicture.asset(
-                    iconPath,
-                    color: primaryColor,
-                    height: 25.0,
+                  Icon(
+                    icon,
+                    size: 30.0,
+                    color: GlobalColors.primary,
                   ),
-                  const SizedBox(width: 5.0),
+                  const SizedBox(width: 10.0),
                   Text(
                     title,
                     style: const TextStyle(
                       fontSize: 24.0,
+                      color: GlobalColors.grey,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
               ),
               Text(
-                widget.stringDate,
-                style: TextStyle(
-                  color: primaryColor,
+                widget.date,
+                style: const TextStyle(
+                  color: GlobalColors.primary,
+                  fontSize: 15.0,
                   fontWeight: FontWeight.w600,
                 ),
               ),

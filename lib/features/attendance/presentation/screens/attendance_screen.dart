@@ -1,9 +1,10 @@
 import 'package:erp_employee_app/core/config/routes.dart';
+import 'package:erp_employee_app/core/constants/global_colors.dart';
+import 'package:erp_employee_app/core/widgets/custom_app_bar.dart';
 import 'package:erp_employee_app/features/attendance/domain/providers/attendance_provider.dart';
 import 'package:erp_employee_app/features/attendance/presentation/components/attendance/circular_animated_button.dart';
 import 'package:erp_employee_app/features/attendance/presentation/components/attendance/try_again_button.dart';
 import 'package:erp_employee_app/features/attendance/presentation/widgets/attendance/leave_button.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:erp_employee_app/core/presentation/components/api_renderer/api_renderer.dart';
 import 'package:flutter/material.dart';
@@ -34,22 +35,27 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     final double radius = size.width * 0.6;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        toolbarHeight: 80.0,
-        leading: MaterialButton(
-          shape: const CircleBorder(),
+      appBar: CustomAppBar(title: 'تسجيل الحضور', actions: [
+        IconButton(
           onPressed: () {
             Navigator.of(context)
                 .push(Routes.attendanceHistory(attendanceProvider));
           },
-          child: const Icon(
-            Icons.history,
+          icon: const Icon(
+            Icons.history_rounded,
             size: 30.0,
+            color: GlobalColors.primary,
           ),
         ),
-      ),
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.error_rounded,
+            size: 30.0,
+            color: GlobalColors.primary,
+          ),
+        ),
+      ]),
       body: Builder(builder: (context) {
         final hasAttendances = attendanceProvider.listState.data.isNotEmpty;
         final hasLeft =

@@ -2,7 +2,7 @@ import 'package:erp_employee_app/core/presentation/screen_provider_wrappers.dart
 import 'package:erp_employee_app/core/presentation/screens/infinite_scroll_screen/home_screen.dart';
 import 'package:erp_employee_app/core/presentation/screens/splash_screen.dart';
 import 'package:erp_employee_app/features/attendance/domain/providers/attendance_provider.dart';
-import 'package:erp_employee_app/features/auth/presentation/auth_screen.dart';
+import 'package:erp_employee_app/features/auth/presentation/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
