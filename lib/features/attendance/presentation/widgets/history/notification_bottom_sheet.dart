@@ -1,5 +1,5 @@
 import 'package:erp_employee_app/core/config/theme/paddings.dart';
-import 'package:erp_employee_app/core/constants/global_colors.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
 import 'package:erp_employee_app/features/notifications/data/enums/notification_tile_type.dart';
 import 'package:flutter/material.dart';
 
@@ -70,14 +70,14 @@ class _NotificationBottomSheetState extends State<NotificationBottomSheet> {
                   Icon(
                     icon,
                     size: 30.0,
-                    color: GlobalColors.primary,
+                    color: ThemeColors.primary,
                   ),
                   const SizedBox(width: 10.0),
                   Text(
                     title,
                     style: const TextStyle(
                       fontSize: 24.0,
-                      color: GlobalColors.grey,
+                      color: ThemeColors.grey,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -86,7 +86,7 @@ class _NotificationBottomSheetState extends State<NotificationBottomSheet> {
               Text(
                 widget.date,
                 style: const TextStyle(
-                  color: GlobalColors.primary,
+                  color: ThemeColors.primary,
                   fontSize: 15.0,
                   fontWeight: FontWeight.w600,
                 ),

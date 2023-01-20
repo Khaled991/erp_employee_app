@@ -1,4 +1,4 @@
-import 'package:erp_employee_app/core/constants/global_colors.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 class TileContent extends StatelessWidget {
@@ -26,7 +26,7 @@ class TileContent extends StatelessWidget {
               fontSize: 14.0,
               fontWeight: !seen ? FontWeight.w700 : FontWeight.w500,
               height: 1.5,
-              color: GlobalColors.grey,
+              color: ThemeColors.grey,
             ),
             maxLines: 2,
             textDirection: TextDirection.rtl,
@@ -36,7 +36,7 @@ class TileContent extends StatelessWidget {
           Text(
             date,
             style: const TextStyle(
-              color: GlobalColors.primary,
+              color: ThemeColors.primary,
               fontSize: 15.0,
               fontWeight: FontWeight.w600,
             ),

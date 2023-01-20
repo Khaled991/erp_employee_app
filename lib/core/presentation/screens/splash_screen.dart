@@ -1,7 +1,11 @@
 import 'package:erp_employee_app/core/config/routes.dart';
+import 'package:erp_employee_app/core/config/theme/paddings.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
+import 'package:erp_employee_app/core/presentation/components/loading_wrapper/loading_wrapper.dart';
 import 'package:erp_employee_app/features/auth/data/models/user.dart';
 import 'package:erp_employee_app/features/auth/domain/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -34,9 +38,22 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      //TODO: implement splash screen
-      body: Text("Splash Screen"),
+    return Scaffold(
+      backgroundColor: ThemeColors.primary,
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SvgPicture.asset(
+              'assets/SVG/logo.svg',
+              width: 110.0,
+              height: 110.0,
+            ),
+            const SizedBox(height: 40.0),
+            const CircularProgressIndicator(color: ThemeColors.white),
+          ],
+        ),
+      ),
     );
   }
 }

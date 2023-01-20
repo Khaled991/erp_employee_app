@@ -1,4 +1,4 @@
-import 'package:erp_employee_app/core/constants/global_colors.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 class AuthFooter extends StatelessWidget {
@@ -13,7 +13,7 @@ class AuthFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: bottomHeight,
-      color: GlobalColors.lightGrey,
+      color: ThemeColors.lightGrey,
     );
   }
 }

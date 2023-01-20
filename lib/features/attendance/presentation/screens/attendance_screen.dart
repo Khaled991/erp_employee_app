@@ -1,10 +1,10 @@
 import 'package:erp_employee_app/core/config/routes.dart';
-import 'package:erp_employee_app/core/constants/global_colors.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
+import 'package:erp_employee_app/features/attendance/presentation/widgets/button/render_attend_button.dart';
+import 'package:erp_employee_app/features/attendance/presentation/widgets/button/render_timer_leave_button.dart';
 import 'package:erp_employee_app/core/widgets/custom_app_bar.dart';
 import 'package:erp_employee_app/features/attendance/domain/providers/attendance_provider.dart';
-import 'package:erp_employee_app/features/attendance/presentation/components/attendance/circular_animated_button.dart';
 import 'package:erp_employee_app/features/attendance/presentation/components/attendance/try_again_button.dart';
-import 'package:erp_employee_app/features/attendance/presentation/widgets/attendance/leave_button.dart';
 import 'package:provider/provider.dart';
 import 'package:erp_employee_app/core/presentation/components/api_renderer/api_renderer.dart';
 import 'package:flutter/material.dart';
@@ -44,15 +44,17 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
           icon: const Icon(
             Icons.history_rounded,
             size: 30.0,
-            color: GlobalColors.primary,
+            color: ThemeColors.primary,
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, Routes.privacyAndSecurity);
+          },
           icon: const Icon(
             Icons.error_rounded,
             size: 30.0,
-            color: GlobalColors.primary,
+            color: ThemeColors.primary,
           ),
         ),
       ]),
@@ -63,10 +65,13 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
 
         return ApiRenderer(
           apiState: attendanceProvider.getLastAttendanceState.apiState,
-          idleWidget: _renderAttendButton(radius),
+          idleWidget: RenderAttendButton(
+              radius: radius, attendanceProvider: attendanceProvider),
           loadedWidget: !hasAttendances || (hasAttendances && hasLeft)
-              ? _renderAttendButton(radius)
-              : _renderTimerLeaveButton(radius),
+              ? RenderAttendButton(
+                  radius: radius, attendanceProvider: attendanceProvider)
+              : RenderTimerLeaveButton(
+                  attendanceProvider: attendanceProvider, radius: radius),
           errorMessage: attendanceProvider.errorMessage,
           errorWidget: _renderErrorWidget(radius: radius),
 
@@ -81,33 +86,6 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
           // ),
         );
       }),
-    );
-  }
-
-  Widget _renderAttendButton(double radius) {
-    return Center(
-      child: CircularAnimatedButton(
-        radius: radius,
-        onPressed: attendanceProvider.attend,
-        child: const Text(
-          "تسجيل\nالحضور",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            fontSize: 45.0,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
-
-  Widget _renderTimerLeaveButton(double radius) {
-    return Center(
-      child: ChangeNotifierProvider<AttendanceProvider>.value(
-        value: context.read<AttendanceProvider>(),
-        child: LeaveButton(radius: radius),
-      ),
     );
   }
 

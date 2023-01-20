@@ -55,10 +55,18 @@ class MockAttendanceRepository extends _i1.Mock
               returnValue: Future<_i3.Attendance?>.value())
           as _i7.Future<_i3.Attendance?>);
   @override
+  _i7.Future<bool> canAttend() =>
+      (super.noSuchMethod(Invocation.method(#canAttend, []),
+          returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
+  @override
   _i7.Future<_i3.Attendance> attend() =>
       (super.noSuchMethod(Invocation.method(#attend, []),
               returnValue: Future<_i3.Attendance>.value(_FakeAttendance_1()))
           as _i7.Future<_i3.Attendance>);
+  @override
+  _i7.Future<bool> canLeave() =>
+      (super.noSuchMethod(Invocation.method(#canLeave, []),
+          returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
   @override
   _i7.Future<_i3.Attendance> leave() =>
       (super.noSuchMethod(Invocation.method(#leave, []),

@@ -1,4 +1,5 @@
 import 'package:erp_employee_app/core/config/theme/paddings.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
 import 'package:erp_employee_app/core/presentation/components/buttons/circular_button.dart';
 import 'package:flutter/material.dart';
 
@@ -6,12 +7,14 @@ class CircularAnimatedButton extends StatefulWidget {
   final double radius;
   final Widget child;
   final void Function() onPressed;
+  final Color color;
 
   const CircularAnimatedButton({
     Key? key,
     required this.radius,
     required this.child,
     required this.onPressed,
+    this.color = ThemeColors.primary,
   }) : super(key: key);
 
   @override
@@ -64,9 +67,7 @@ class _CircularAnimatedButtonState extends State<CircularAnimatedButton>
           padding: EdgeInsets.all(_animationPadding.value),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Theme.of(context)
-                .primaryColor
-                .withOpacity(_animationOpacity.value),
+            color: widget.color.withOpacity(_animationOpacity.value),
           ),
           child: child,
         );
@@ -74,9 +75,9 @@ class _CircularAnimatedButtonState extends State<CircularAnimatedButton>
       child: CircularButton(
         onPressed: widget.onPressed,
         radius: widget.radius - 60,
-        fillColor: Theme.of(context).primaryColor,
-        splashColor: Theme.of(context).primaryColor,
-        highlightColor: Theme.of(context).primaryColor,
+        fillColor: widget.color,
+        splashColor: widget.color,
+        highlightColor: widget.color,
         child: widget.child,
       ),
     );

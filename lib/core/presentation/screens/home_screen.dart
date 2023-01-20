@@ -14,14 +14,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // TODO: change to 0
-  int activeScreenIndex = 2;
+  int activeScreenIndex = 0;
   List<Widget> screens = [
     ScreenProviderWrappers.attendance,
-    ScreenProviderWrappers.employeeRequest,
+    ScreenProviderWrappers.employeeRequest(),
     ScreenProviderWrappers.notifications,
     Container()
-    // const SettingsScreen(),
   ];
 
   void changePage(int index) {

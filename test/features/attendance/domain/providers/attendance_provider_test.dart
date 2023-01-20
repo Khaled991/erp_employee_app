@@ -112,6 +112,8 @@ void main() {
             id: index,
             attendTime: DateTime.now(),
             leaveTime: DateTime.now(),
+            isLate: Random().nextBool(),
+            overtime: Random().nextBool(),
           ),
         ),
       );
@@ -315,6 +317,8 @@ void main() {
       id: 1,
       attendTime: DateTime.now(),
       leaveTime: null,
+      isLate: Random().nextBool(),
+      overtime: Random().nextBool(),
     );
 
     setUp(() {
@@ -364,6 +368,8 @@ void main() {
           id: 22,
           attendTime: DateTime.now(),
           leaveTime: DateTime.now(),
+          isLate: Random().nextBool(),
+          overtime: Random().nextBool(),
         );
         attendanceProvider.setGetLastAttendanceState(
           (state) => state.copyWith(
@@ -414,6 +420,8 @@ void main() {
           id: 22,
           attendTime: DateTime.now(),
           leaveTime: DateTime.now(),
+          isLate: Random().nextBool(),
+          overtime: Random().nextBool(),
         );
         attendanceProvider.setGetLastAttendanceState(
           (state) => state.copyWith(apiState: ApiState.LOADED),
@@ -449,6 +457,8 @@ void main() {
       id: 1,
       attendTime: DateTime.now(),
       leaveTime: null,
+      isLate: Random().nextBool(),
+      overtime: Random().nextBool(),
     );
     test(
       "should apiState = ApiState.LOADED and add received Attendance to first item in the list when AttendanceRepository returns Attendance",
@@ -495,6 +505,8 @@ void main() {
       id: 1,
       attendTime: DateTime.now(),
       leaveTime: null,
+      isLate: Random().nextBool(),
+      overtime: Random().nextBool(),
     );
     final leaveResponse = lastAttendance.copyWith(leaveTime: DateTime.now());
     test(

@@ -1,79 +1,83 @@
-import 'package:flutter/material.dart';
-
-import 'package:erp_employee_app/core/config/theme/border_radius.dart';
-import 'package:erp_employee_app/core/config/theme/colors.dart';
+import 'package:erp_employee_app/core/config/theme/paddings.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
 import 'package:erp_employee_app/core/presentation/components/gap/gap.dart';
-import 'package:erp_employee_app/features/attendance/data/models/attendance.dart';
-import 'package:erp_employee_app/features/attendance/presentation/components/history/day_and_date_component.dart';
 import 'package:erp_employee_app/features/attendance/presentation/components/history/time_badge.dart';
-import 'package:erp_employee_app/features/attendance/presentation/components/history/time_title_and_exact_time.dart';
+import 'package:erp_employee_app/features/attendance/presentation/widgets/history/history_tile_side_bar.dart';
+import 'package:erp_employee_app/features/attendance/presentation/widgets/history/history_tile_title.dart';
+import 'package:flutter/material.dart';
+import 'package:erp_employee_app/core/config/theme/border_radius.dart';
+import 'package:erp_employee_app/features/attendance/data/models/attendance.dart';
+import 'package:erp_employee_app/features/attendance/presentation/components/history/time_title_and_exact_time_and_badge.dart';
 
 class HistoryTile extends StatelessWidget {
-  final TimeBadgeType? timeBadgeType;
+  final String titleDate;
   final Attendance attendance;
+  final Color titleAndSideBarsColor;
 
   const HistoryTile({
     Key? key,
-    this.timeBadgeType,
     required this.attendance,
+    required this.titleDate,
+    this.titleAndSideBarsColor = ThemeColors.primary,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 110.0,
+      height: 145.0,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(
           Radius.circular(BorderRadiuses.small),
         ),
-        color: white,
-        border: Border.all(
-          color: ColorPalette.grey.withOpacity(0.3),
-          width: 1,
-        ),
+        color: ThemeColors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            spreadRadius: 4,
+            blurRadius: 6,
+            offset: const Offset(0, 0),
+          ),
+        ],
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Stack(
-          textDirection: TextDirection.ltr,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            HistoryTileSideBar(color: titleAndSideBarsColor),
+            Column(
               children: [
-                DayAndDate(
-                  dayNumber: attendance.attendTime.day,
-                  weekDay: attendance.attendTime.weekday,
+                HistoryTileTitle(
+                  title: titleDate,
+                  color: titleAndSideBarsColor,
                 ),
-                Expanded(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TimeTitleAndExactTime(
-                        timeTitle: TimeTitle.attendance,
-                        dateTime: attendance.attendTime,
-                      ),
-                      Container(
-                        width: 1,
-                        height: double.infinity,
-                        color: ColorPalette.grey.withOpacity(0.25),
-                      ),
-                      TimeTitleAndExactTime(
-                        timeTitle: TimeTitle.leaving,
-                        dateTime: attendance.leaveTime,
-                      ),
-                    ],
-                  ),
+                Gap(
+                  isRow: true,
+                  space: Paddings.extraLarge,
+                  children: [
+                    TimeTitleAndExactTimeAndBadge(
+                      timeTitle: TimeTitle.attendance,
+                      dateTime: attendance.attendTime,
+                    ),
+                    TimeTitleAndExactTimeAndBadge(
+                      timeTitle: TimeTitle.leaving,
+                      dateTime: attendance.leaveTime,
+                    ),
+                  ],
                 ),
+                Gap(
+                  isRow: true,
+                  space: Paddings.extraLarge,
+                  children: [
+                    if (attendance.isLate)
+                      const TimeBadge(timeBadgeType: TimeBadgeType.earlier),
+                    if (attendance.overtime)
+                      const TimeBadge(timeBadgeType: TimeBadgeType.overtime),
+                  ],
+                )
               ],
             ),
-            Gap(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (timeBadgeType != null)
-                  TimeBadge(timeBadgeType: timeBadgeType!),
-              ],
-            ),
+            HistoryTileSideBar(color: titleAndSideBarsColor)
           ],
         ),
       ),

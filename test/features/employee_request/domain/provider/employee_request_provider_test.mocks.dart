@@ -2,26 +2,24 @@
 // in erp_employee_app/test/features/employee_request/domain/provider/employee_request_provider_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i8;
+import 'dart:async' as _i7;
 
 import 'package:erp_employee_app/core/data/api/api.dart' as _i3;
-import 'package:erp_employee_app/core/data/api/api_request.dart' as _i12;
-import 'package:erp_employee_app/core/data/entities/duration_limits/duration_limits.dart'
-    as _i5;
+import 'package:erp_employee_app/core/data/api/api_request.dart' as _i11;
 import 'package:erp_employee_app/core/data/entities/provider_state/pagination_filter.dart'
-    as _i11;
+    as _i10;
 import 'package:erp_employee_app/core/data/models/paginated_response/paginated_response.dart'
     as _i4;
 import 'package:erp_employee_app/core/domain/repositories/repository_with_socket.dart'
-    as _i9;
+    as _i8;
 import 'package:erp_employee_app/features/employee_request/data/models/employee_request.dart'
-    as _i10;
+    as _i9;
 import 'package:erp_employee_app/features/employee_request/domain/repository/employee_request_repository.dart'
-    as _i7;
+    as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:socket_io_client/socket_io_client.dart' as _i2;
-import 'package:socket_io_client/src/manager.dart' as _i6;
-import 'package:socket_io_common/src/util/event_emitter.dart' as _i13;
+import 'package:socket_io_client/src/manager.dart' as _i5;
+import 'package:socket_io_common/src/util/event_emitter.dart' as _i12;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -40,15 +38,13 @@ class _FakeApi_1<T> extends _i1.Fake implements _i3.Api<T> {}
 class _FakePaginatedResponse_2<Model> extends _i1.Fake
     implements _i4.PaginatedResponse<Model> {}
 
-class _FakeDurationLimits_3 extends _i1.Fake implements _i5.DurationLimits {}
-
-class _FakeManager_4 extends _i1.Fake implements _i6.Manager {}
+class _FakeManager_3 extends _i1.Fake implements _i5.Manager {}
 
 /// A class which mocks [EmployeeRequestRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockEmployeeRequestRepository extends _i1.Mock
-    implements _i7.EmployeeRequestRepository {
+    implements _i6.EmployeeRequestRepository {
   MockEmployeeRequestRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -60,33 +56,26 @@ class MockEmployeeRequestRepository extends _i1.Mock
   _i3.Api<dynamic> get api => (super.noSuchMethod(Invocation.getter(#api),
       returnValue: _FakeApi_1<dynamic>()) as _i3.Api<dynamic>);
   @override
-  _i8.Future<void> sendRequest({String? type, String? data}) =>
+  _i7.Future<void> sendRequest({String? type, String? data}) =>
       (super.noSuchMethod(
           Invocation.method(#sendRequest, [], {#type: type, #data: data}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i8.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
   @override
   void onReceivedResponseFromHr(
-          _i9.AddToListState<_i10.EmployeeRequest>? addToListState) =>
+          _i8.AddToListState<_i9.EmployeeRequest>? addToListState) =>
       super.noSuchMethod(
           Invocation.method(#onReceivedResponseFromHr, [addToListState]),
           returnValueForMissingStub: null);
   @override
-  _i8.Future<_i4.PaginatedResponse<_i10.EmployeeRequest>> findAll(
-          _i11.PaginationFilter? paginationFields,
-          _i12.FromJson<_i10.EmployeeRequest>? fromJson) =>
+  _i7.Future<_i4.PaginatedResponse<_i9.EmployeeRequest>> findAll(
+          _i10.PaginationFilter? paginationFields,
+          _i11.FromJson<_i9.EmployeeRequest>? fromJson) =>
       (super.noSuchMethod(
-              Invocation.method(#findAll, [paginationFields, fromJson]),
-              returnValue:
-                  Future<_i4.PaginatedResponse<_i10.EmployeeRequest>>.value(
-                      _FakePaginatedResponse_2<_i10.EmployeeRequest>()))
-          as _i8.Future<_i4.PaginatedResponse<_i10.EmployeeRequest>>);
-  @override
-  _i8.Future<_i5.DurationLimits> findDurationLimits() =>
-      (super.noSuchMethod(Invocation.method(#findDurationLimits, []),
-              returnValue:
-                  Future<_i5.DurationLimits>.value(_FakeDurationLimits_3()))
-          as _i8.Future<_i5.DurationLimits>);
+          Invocation.method(#findAll, [paginationFields, fromJson]),
+          returnValue: Future<_i4.PaginatedResponse<_i9.EmployeeRequest>>.value(
+              _FakePaginatedResponse_2<_i9.EmployeeRequest>())) as _i7
+          .Future<_i4.PaginatedResponse<_i9.EmployeeRequest>>);
 }
 
 /// A class which mocks [Socket].
@@ -108,11 +97,11 @@ class MockSocket extends _i1.Mock implements _i2.Socket {
       super.noSuchMethod(Invocation.setter(#opts, _opts),
           returnValueForMissingStub: null);
   @override
-  _i6.Manager get io =>
-      (super.noSuchMethod(Invocation.getter(#io), returnValue: _FakeManager_4())
-          as _i6.Manager);
+  _i5.Manager get io =>
+      (super.noSuchMethod(Invocation.getter(#io), returnValue: _FakeManager_3())
+          as _i5.Manager);
   @override
-  set io(_i6.Manager? _io) => super.noSuchMethod(Invocation.setter(#io, _io),
+  set io(_i5.Manager? _io) => super.noSuchMethod(Invocation.setter(#io, _io),
       returnValueForMissingStub: null);
   @override
   _i2.Socket get json => (super.noSuchMethod(Invocation.getter(#json),
@@ -267,15 +256,15 @@ class MockSocket extends _i1.Mock implements _i2.Socket {
       (super.noSuchMethod(Invocation.method(#compress, [compress]),
           returnValue: _FakeSocket_0()) as _i2.Socket);
   @override
-  void on(String? event, _i13.EventHandler<dynamic>? handler) =>
+  void on(String? event, _i12.EventHandler<dynamic>? handler) =>
       super.noSuchMethod(Invocation.method(#on, [event, handler]),
           returnValueForMissingStub: null);
   @override
-  void once(String? event, _i13.EventHandler<dynamic>? handler) =>
+  void once(String? event, _i12.EventHandler<dynamic>? handler) =>
       super.noSuchMethod(Invocation.method(#once, [event, handler]),
           returnValueForMissingStub: null);
   @override
-  void off(String? event, [_i13.EventHandler<dynamic>? handler]) =>
+  void off(String? event, [_i12.EventHandler<dynamic>? handler]) =>
       super.noSuchMethod(Invocation.method(#off, [event, handler]),
           returnValueForMissingStub: null);
   @override

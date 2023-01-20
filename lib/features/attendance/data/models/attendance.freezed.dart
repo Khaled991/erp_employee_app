@@ -23,6 +23,8 @@ mixin _$Attendance {
   int get id => throw _privateConstructorUsedError;
   DateTime get attendTime => throw _privateConstructorUsedError;
   DateTime? get leaveTime => throw _privateConstructorUsedError;
+  bool get overtime => throw _privateConstructorUsedError;
+  bool get isLate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +37,12 @@ abstract class $AttendanceCopyWith<$Res> {
   factory $AttendanceCopyWith(
           Attendance value, $Res Function(Attendance) then) =
       _$AttendanceCopyWithImpl<$Res>;
-  $Res call({int id, DateTime attendTime, DateTime? leaveTime});
+  $Res call(
+      {int id,
+      DateTime attendTime,
+      DateTime? leaveTime,
+      bool overtime,
+      bool isLate});
 }
 
 /// @nodoc
@@ -51,6 +58,8 @@ class _$AttendanceCopyWithImpl<$Res> implements $AttendanceCopyWith<$Res> {
     Object? id = freezed,
     Object? attendTime = freezed,
     Object? leaveTime = freezed,
+    Object? overtime = freezed,
+    Object? isLate = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -65,6 +74,14 @@ class _$AttendanceCopyWithImpl<$Res> implements $AttendanceCopyWith<$Res> {
           ? _value.leaveTime
           : leaveTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      overtime: overtime == freezed
+          ? _value.overtime
+          : overtime // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLate: isLate == freezed
+          ? _value.isLate
+          : isLate // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -76,7 +93,12 @@ abstract class _$$_AttendanceCopyWith<$Res>
           _$_Attendance value, $Res Function(_$_Attendance) then) =
       __$$_AttendanceCopyWithImpl<$Res>;
   @override
-  $Res call({int id, DateTime attendTime, DateTime? leaveTime});
+  $Res call(
+      {int id,
+      DateTime attendTime,
+      DateTime? leaveTime,
+      bool overtime,
+      bool isLate});
 }
 
 /// @nodoc
@@ -94,6 +116,8 @@ class __$$_AttendanceCopyWithImpl<$Res> extends _$AttendanceCopyWithImpl<$Res>
     Object? id = freezed,
     Object? attendTime = freezed,
     Object? leaveTime = freezed,
+    Object? overtime = freezed,
+    Object? isLate = freezed,
   }) {
     return _then(_$_Attendance(
       id: id == freezed
@@ -108,6 +132,14 @@ class __$$_AttendanceCopyWithImpl<$Res> extends _$AttendanceCopyWithImpl<$Res>
           ? _value.leaveTime
           : leaveTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      overtime: overtime == freezed
+          ? _value.overtime
+          : overtime // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLate: isLate == freezed
+          ? _value.isLate
+          : isLate // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -116,7 +148,11 @@ class __$$_AttendanceCopyWithImpl<$Res> extends _$AttendanceCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Attendance extends _Attendance {
   _$_Attendance(
-      {required this.id, required this.attendTime, required this.leaveTime})
+      {required this.id,
+      required this.attendTime,
+      required this.leaveTime,
+      required this.overtime,
+      required this.isLate})
       : super._();
 
   factory _$_Attendance.fromJson(Map<String, dynamic> json) =>
@@ -128,10 +164,14 @@ class _$_Attendance extends _Attendance {
   final DateTime attendTime;
   @override
   final DateTime? leaveTime;
+  @override
+  final bool overtime;
+  @override
+  final bool isLate;
 
   @override
   String toString() {
-    return 'Attendance(id: $id, attendTime: $attendTime, leaveTime: $leaveTime)';
+    return 'Attendance(id: $id, attendTime: $attendTime, leaveTime: $leaveTime, overtime: $overtime, isLate: $isLate)';
   }
 
   @override
@@ -142,7 +182,9 @@ class _$_Attendance extends _Attendance {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.attendTime, attendTime) &&
-            const DeepCollectionEquality().equals(other.leaveTime, leaveTime));
+            const DeepCollectionEquality().equals(other.leaveTime, leaveTime) &&
+            const DeepCollectionEquality().equals(other.overtime, overtime) &&
+            const DeepCollectionEquality().equals(other.isLate, isLate));
   }
 
   @JsonKey(ignore: true)
@@ -151,7 +193,9 @@ class _$_Attendance extends _Attendance {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(attendTime),
-      const DeepCollectionEquality().hash(leaveTime));
+      const DeepCollectionEquality().hash(leaveTime),
+      const DeepCollectionEquality().hash(overtime),
+      const DeepCollectionEquality().hash(isLate));
 
   @JsonKey(ignore: true)
   @override
@@ -168,7 +212,9 @@ abstract class _Attendance extends Attendance {
   factory _Attendance(
       {required final int id,
       required final DateTime attendTime,
-      required final DateTime? leaveTime}) = _$_Attendance;
+      required final DateTime? leaveTime,
+      required final bool overtime,
+      required final bool isLate}) = _$_Attendance;
   _Attendance._() : super._();
 
   factory _Attendance.fromJson(Map<String, dynamic> json) =
@@ -180,6 +226,10 @@ abstract class _Attendance extends Attendance {
   DateTime get attendTime;
   @override
   DateTime? get leaveTime;
+  @override
+  bool get overtime;
+  @override
+  bool get isLate;
   @override
   @JsonKey(ignore: true)
   _$$_AttendanceCopyWith<_$_Attendance> get copyWith =>

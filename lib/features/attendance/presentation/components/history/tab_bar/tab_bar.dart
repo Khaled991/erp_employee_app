@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:erp_employee_app/core/config/theme/colors.dart';
-
 class TabBarC extends StatelessWidget {
   final TickerProvider vsync;
   final List<String> tabsTitles;
@@ -27,7 +25,7 @@ class TabBarC extends StatelessWidget {
         onTap: (int index) {
           onTap(tabsTitles, index);
         },
-        unselectedLabelColor: ColorPalette.grey.shade50,
+        unselectedLabelColor: Colors.grey.shade50,
         labelColor: Theme.of(context).primaryColor,
         tabs: tabsTitles.map((String tabTitle) {
           return Tab(

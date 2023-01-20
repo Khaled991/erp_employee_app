@@ -35,7 +35,7 @@ void showSnackBar(BuildContext context, String msg,
             .bodyMedium!
             .copyWith(color: Colors.white),
       ),
-      margin: const EdgeInsets.only(bottom: 30.0),
+      // margin: const EdgeInsets.only(bottom: 0.0),
       behavior: SnackBarBehavior.floating,
       backgroundColor: color,
     ),

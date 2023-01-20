@@ -6,11 +6,11 @@ enum TimeTitle {
   leaving,
 }
 
-class TimeTitleAndExactTime extends StatelessWidget {
+class TimeTitleAndExactTimeAndBadge extends StatelessWidget {
   final TimeTitle timeTitle;
   final DateTime? dateTime;
 
-  const TimeTitleAndExactTime({
+  const TimeTitleAndExactTimeAndBadge({
     Key? key,
     required this.timeTitle,
     required this.dateTime,
@@ -19,13 +19,14 @@ class TimeTitleAndExactTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           _getTimeTitleString(),
           style: const TextStyle(
             fontSize: 20.0,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.bold,
+            height: 0,
           ),
           textAlign: TextAlign.center,
         ),
@@ -34,6 +35,7 @@ class TimeTitleAndExactTime extends StatelessWidget {
           style: const TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.w600,
+            height: 0,
           ),
           textAlign: TextAlign.center,
         ),

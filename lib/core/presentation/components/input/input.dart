@@ -12,6 +12,7 @@ class Input extends StatelessWidget {
   final String? Function(String?)? validator;
   final void Function(String)? onFieldSubmitted;
   final bool obscureText;
+  final bool autoFocus;
 
   Input({
     Key? key,
@@ -24,12 +25,14 @@ class Input extends StatelessWidget {
     this.validator,
     this.onFieldSubmitted,
     this.obscureText = false,
+    this.autoFocus = false,
   })  : controller = controller ?? TextEditingController(),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: autoFocus,
       controller: controller,
       obscureText: obscureText,
       validator: validator,

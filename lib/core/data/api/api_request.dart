@@ -41,8 +41,6 @@ class ApiRequest {
     await checkConnectivity();
     try {
       final response = await callback();
-      print(response);
-
       return response;
     } on DioError catch (e) {
       if (e.response != null && e.response!.statusCode == 401) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:erp_employee_app/core/config/theme/paddings.dart';
-import 'package:erp_employee_app/core/constants/global_colors.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
 import 'package:erp_employee_app/core/presentation/components/buttons/button.dart';
 import 'package:erp_employee_app/core/presentation/components/gap/gap.dart';
 import 'package:erp_employee_app/core/presentation/components/input/input.dart';
@@ -28,7 +28,7 @@ class AuthForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: GlobalColors.backgroundColor,
+      color: ThemeColors.backgroundColor,
       height: centerHeight,
       width: double.infinity,
       child: Center(
@@ -47,7 +47,7 @@ class AuthForm extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 35.0,
                     fontWeight: FontWeight.bold,
-                    color: GlobalColors.primary,
+                    color: ThemeColors.primary,
                   ),
                 ),
                 const SizedBox(height: 40.0),

@@ -22,17 +22,6 @@ class ProviderWithListPaginated<Model> extends AbsProvider {
     required this.fromJson,
   }) : _repository = repository;
 
-  Future<void> findDurationLimits() async {
-    return makeApiRequest(
-      setState: setDurationLimitsState,
-      callback: () async {
-        DurationLimits durationLimits = await _repository.findDurationLimits();
-
-        setDurationLimitsState((state) => state.copyWith(data: durationLimits));
-      },
-    );
-  }
-
   Future<void> findAll() {
     return makeApiRequest(
       setState: setListState,

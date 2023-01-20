@@ -1,4 +1,4 @@
-import 'package:erp_employee_app/core/constants/global_colors.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 class NotSeenCircle extends StatelessWidget {
@@ -11,7 +11,7 @@ class NotSeenCircle extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
-        color: GlobalColors.primary,
+        color: ThemeColors.primary,
       ),
       width: 8.0,
       height: 8.0,

@@ -1,4 +1,3 @@
-import 'package:erp_employee_app/features/employee_request/data/enums/employee_request_type.dart';
 import 'package:erp_employee_app/features/employee_request/data/enums/hr_response_status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

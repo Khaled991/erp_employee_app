@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/constants/global_colors.dart';
+import '../../../../core/config/theme/theme_colors.dart';
 
 class AuthHeader extends StatelessWidget {
   const AuthHeader({
@@ -15,7 +15,7 @@ class AuthHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: GlobalColors.lightGrey,
+        color: ThemeColors.lightGrey,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(45.0),
           bottomRight: Radius.circular(45.0),

@@ -11,6 +11,8 @@ class Attendance with _$Attendance {
     required int id,
     required DateTime attendTime,
     required DateTime? leaveTime,
+    required bool overtime,
+    required bool isLate,
   }) = _Attendance;
 
   factory Attendance.fromJson(Map<String, dynamic> json) =>

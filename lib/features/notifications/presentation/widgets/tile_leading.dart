@@ -1,4 +1,4 @@
-import 'package:erp_employee_app/core/constants/global_colors.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 class TileLeading extends StatelessWidget {
@@ -14,11 +14,11 @@ class TileLeading extends StatelessWidget {
       width: 60.0,
       height: 60.0,
       child: CircleAvatar(
-        backgroundColor: GlobalColors.primary,
+        backgroundColor: ThemeColors.primary,
         child: Icon(
           leading,
           size: 40.0,
-          color: GlobalColors.white,
+          color: ThemeColors.white,
         ),
       ),
     );

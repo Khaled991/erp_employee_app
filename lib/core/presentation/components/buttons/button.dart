@@ -1,5 +1,5 @@
 import 'package:erp_employee_app/core/config/theme/border_radius.dart';
-import 'package:erp_employee_app/core/constants/global_colors.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
@@ -13,7 +13,7 @@ class Button extends StatelessWidget {
     Key? key,
     required this.label,
     required this.onPressed,
-    this.color = GlobalColors.primary,
+    this.color = ThemeColors.primary,
     this.height = 60,
     this.fontSize = 20.0,
   }) : super(key: key);

@@ -1,31 +1,37 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+
 import 'package:erp_employee_app/core/config/theme/paddings.dart';
-import 'package:erp_employee_app/core/constants/global_colors.dart';
 import 'package:erp_employee_app/core/data/api/enums/api_state_enum.dart';
 import 'package:erp_employee_app/core/domain/providers/root_provider.dart';
 import 'package:erp_employee_app/core/presentation/components/buttons/button.dart';
 import 'package:erp_employee_app/core/presentation/components/gap/gap.dart';
 import 'package:erp_employee_app/core/presentation/components/input/input.dart';
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:erp_employee_app/core/utils/regex.dart';
 import 'package:erp_employee_app/core/utils/snackbar_utils.dart';
 import 'package:erp_employee_app/core/widgets/custom_app_bar.dart';
 import 'package:erp_employee_app/features/attendance/presentation/components/dropdown/dropdown.dart';
 import 'package:erp_employee_app/features/employee_request/data/enums/employee_request_type.dart';
 import 'package:erp_employee_app/features/employee_request/domain/provider/employee_request_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 
 class EmployeeRequestScreen extends StatefulWidget {
-  const EmployeeRequestScreen({Key? key}) : super(key: key);
+  final EmployeeRequestType? requestType;
+
+  const EmployeeRequestScreen({
+    Key? key,
+    this.requestType,
+  }) : super(key: key);
 
   @override
   State<EmployeeRequestScreen> createState() => _EmployeeRequestScreenState();
 }
 
 class _EmployeeRequestScreenState extends State<EmployeeRequestScreen> {
-  EmployeeRequestType? requestType;
+  late EmployeeRequestType? requestType = widget.requestType;
   final TextEditingController _customRequestTypeController =
       TextEditingController();
   final TextEditingController _requestDataController = TextEditingController();
@@ -74,16 +80,7 @@ class _EmployeeRequestScreenState extends State<EmployeeRequestScreen> {
     final screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: CustomAppBar(title: 'إضافة طلب', actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.error_rounded,
-            size: 30.0,
-            color: GlobalColors.primary,
-          ),
-        ),
-      ]),
+      appBar: const CustomAppBar(title: 'إضافة طلب'),
       body: Padding(
         padding: const EdgeInsets.all(Paddings.screen),
         child: Form(
@@ -112,6 +109,7 @@ class _EmployeeRequestScreenState extends State<EmployeeRequestScreen> {
                 ),
                 if (requestType == EmployeeRequestType.OTHER)
                   Input(
+                    autoFocus: true,
                     controller: _customRequestTypeController,
                     label: "النوع",
                     validator: (String? value) => _validateInput(value,
@@ -146,6 +144,7 @@ class _EmployeeRequestScreenState extends State<EmployeeRequestScreen> {
 
   Map<EmployeeRequestType, Input> get _renderRequestInput => {
         EmployeeRequestType.LOAN: Input(
+          autoFocus: true,
           controller: _requestDataController,
           label: "قيمة السلفة",
           keyboardType: TextInputType.number,
@@ -157,6 +156,7 @@ class _EmployeeRequestScreenState extends State<EmployeeRequestScreen> {
               _validateInput(value, requiredFieldNameOnError: "قيمة السلفة"),
         ),
         EmployeeRequestType.VACATION: Input(
+          autoFocus: true,
           controller: _requestDataController,
           label: "مدة الإجازة (عدد الأيام)",
           inputFormatters: [
@@ -166,6 +166,7 @@ class _EmployeeRequestScreenState extends State<EmployeeRequestScreen> {
               _validateInput(value, requiredFieldNameOnError: "مدة الإجازة"),
         ),
         EmployeeRequestType.LEAVING: Input(
+          autoFocus: true,
           controller: _requestDataController,
           label: "السبب",
           maxLines: null,
@@ -173,6 +174,7 @@ class _EmployeeRequestScreenState extends State<EmployeeRequestScreen> {
               _validateInput(value, requiredFieldNameOnError: "السبب"),
         ),
         EmployeeRequestType.OTHER: Input(
+          autoFocus: true,
           controller: _requestDataController,
           label: "السبب",
           maxLines: null,

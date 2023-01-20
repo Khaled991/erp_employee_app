@@ -1,4 +1,4 @@
-import 'package:erp_employee_app/core/constants/global_colors.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:erp_employee_app/core/presentation/components/input/input_decoration.dart';
@@ -37,7 +37,7 @@ class Dropdown<T> extends StatelessWidget {
         value: value,
         icon: const Icon(
           Icons.keyboard_arrow_down_outlined,
-          color: GlobalColors.primary,
+          color: ThemeColors.primary,
           size: 30.0,
         ),
         iconSize: 24,

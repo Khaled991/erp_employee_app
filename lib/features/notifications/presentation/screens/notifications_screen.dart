@@ -1,10 +1,13 @@
+import 'package:erp_employee_app/core/config/routes.dart';
 import 'package:erp_employee_app/core/config/theme/paddings.dart';
-import 'package:erp_employee_app/core/constants/global_colors.dart';
+import 'package:erp_employee_app/core/config/theme/theme_colors.dart';
 import 'package:erp_employee_app/core/presentation/components/gap/gap.dart';
+import 'package:erp_employee_app/core/presentation/components/icon_with_badge.dart';
 import 'package:erp_employee_app/core/widgets/custom_app_bar.dart';
 import 'package:erp_employee_app/features/notifications/data/enums/notification_tile_type.dart';
 import 'package:erp_employee_app/features/notifications/domain/providers/hr_message_provider.dart';
 import 'package:erp_employee_app/features/notifications/presentation/widgets/notification_tile.dart';
+import 'package:erp_employee_app/features/privacy_and_security/privacy_and_security_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,17 +36,22 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         title: 'الاشعارات',
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.error,
-              size: 30.0,
-              color: GlobalColors.primary,
+            onPressed: () {
+              Navigator.push(context, Routes.notificatioFilters);
+            },
+            icon: const IconWithBadge(
+              icon: Icons.filter_alt_rounded,
+              iconColor: ThemeColors.primary,
+              showBadge: true,
             ),
           ),
         ],
       ),
       body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: Paddings.screen),
+          padding: const EdgeInsets.symmetric(
+            vertical: Paddings.screen,
+            horizontal: Paddings.small,
+          ),
           child: Column(
             children: const [
               HrMessageTile(
@@ -57,7 +65,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 notificationTileType: NotificationTileType.notification,
                 description:
                     'hello worldsssssssssssssssssssssssssslh;k;h;ougouoihohsdsadasdsadsaworldsssssssssssssssssssssssssslhworldsssssssssssssssssssssssssslhworldsssssssssssssssssssssssssslhworldsssssssssssssssssssssssssslh worldsssssssssssssssssssssssssslh',
-                seen: false,
+                seen: true,
                 date: "22-5-2022",
               ),
             ],
